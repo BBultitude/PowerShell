@@ -1,3 +1,24 @@
+<#
+.SYNOPSIS
+    Cleans up Packages
+.DESCRIPTION
+    Remove-CMPackageandSource removes all specified Packages and the source directory from Configuration Manager
+.PARAMETER Packages
+    Specifies the Package ID's to be run against
+.INPUTS
+    None
+.OUTPUTS
+    None
+.NOTES
+    Version:        1.0
+    Author:         Bryan Bultitude
+    Creation Date:  24/08/2021
+    Purpose/Change: Initial script development
+.EXAMPLE
+    PS> Remove-CMPackageandSource -Packages "XXXXXXX"
+.EXAMPLE
+    PS> Remove-CMPackageandSource -Packages "XXXXXXX","XXXXXXX","XXXXXXX","XXXXXXX","XXXXXXX","XXXXXXX","XXXXXXX","XXXXXXX"
+#>
 function Remove-CMPackageandSource ($Packages) {
     foreach ($Package in $Packages) {
         $Info = Get-CMPackage -ID $package -Fast | Select-Object Name, PackageID, Pkgsourcepath | Format-List
