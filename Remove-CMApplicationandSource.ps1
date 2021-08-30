@@ -26,7 +26,10 @@ function Remove-CMApplicationandSource ($ApplicationName) {
                         foreach ($DeploymentType in $AllAppMgmt.DeploymentType) {
                             $AllAppscontent.Add("$($Allapp.CI_ID) - $($DeploymentType.Title.InnerText)", $DeploymentType.Installer.Contents.Content.Location)
                         }
-            
+                    }
+                    $CMPackages = Get-CMPackage -Fast
+                    Foreach ($PKGInfo in $CMPackages) {
+                        $AllAppscontent.Add($PKGInfo.PackageID, $($PKGInfo.PkgSourcePath).TrimEnd('\'))
                     }
                     $uniqueContent = $true
                     foreach ($h in $AllAppscontent.Keys) {
