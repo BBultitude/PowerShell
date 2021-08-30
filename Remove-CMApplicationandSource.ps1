@@ -17,6 +17,7 @@ function Remove-CMApplicationandSource ($ApplicationName) {
             }
             If ($Application.HasContent -eq $true) {
                 $uniqueContentlocal = $ContentLocation.Values | Select-Object -Unique
+                $contentlocationcompare = $uniqueContentlocal.TrimEnd('\')
                 Write-Host "Checking source against all applications to confirm its unique... This will take some time"
                 ForEach ($contentlocal in $uniqueContentlocal) {
                     $ALLAPPLICATIONS = Get-CMApplication | Where-Object { $_.ci_ID -ne $contentidcompare }
