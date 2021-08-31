@@ -1,3 +1,22 @@
+<#
+.SYNOPSIS
+    Cleans up Applications
+.DESCRIPTION
+    Remove-CMApplicationandSource removes all specified Application and the source directory from Configuration Manager
+.PARAMETER Packages
+    Specifies the Application Name to be run against
+.INPUTS
+    None
+.OUTPUTS
+    None
+.NOTES
+    Version:        1.0
+    Author:         Bryan Bultitude
+    Creation Date:  31/08/2021
+    Purpose/Change: Initial script development
+.EXAMPLE
+    PS> Remove-CMApplicationandSource -Application Name "XXXXXXXX XXX"
+#>
 function Remove-CMApplicationandSource ($ApplicationName) {
     Import-CMModule A00
     $Application = Get-CMApplication -Name $ApplicationName
