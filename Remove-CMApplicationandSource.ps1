@@ -3,7 +3,7 @@
     Cleans up Applications
 .DESCRIPTION
     Remove-CMApplicationandSource removes all specified Application and the source directory from Configuration Manager
-.PARAMETER Packages
+.PARAMETER ApplicationName
     Specifies the Application Name to be run against
 .INPUTS
     None
@@ -15,7 +15,7 @@
     Creation Date:  31/08/2021
     Purpose/Change: Initial script development
 .EXAMPLE
-    PS> Remove-CMApplicationandSource -Application Name "XXXXXXXX XXX"
+    PS> Remove-CMApplicationandSource -ApplicationName "XXXXXXXX XXX"
 #>
 function Remove-CMApplicationandSource ($ApplicationName) {
     Import-CMModule A00
