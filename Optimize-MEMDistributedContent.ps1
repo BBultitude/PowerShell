@@ -1,4 +1,4 @@
-function Optimize-DistributedContent {
+function Optimize-MEMDistributedContent {
     [string]$SiteServer = "SERVER"
     [string]$SiteCode = "SITECODE"
     $Namespace = "root\SMS\Site_" + $SiteCode
