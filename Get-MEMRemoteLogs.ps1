@@ -1,11 +1,37 @@
 Function Get-MEMRemoteLogs {
+  <#
+  .SYNOPSIS
+    Get remote logs for Configuration Manager.
+  .DESCRIPTION
+    Get remote logs of Configruation Manager Primary Server or of remote systems' Configuration Manager Agent.
+  .PARAMETER ConfigMGR
+    Switches to get logs for Configuration Manager Primary Server. Not to be used with any other Parameters.
+  .PARAMETER RemotePC
+    Switches to get logs for Configuration Manager Agent for remote systems. Not to be used with -ConfigMGR
+  .PARAMETER ComputerName
+    Mandatory requirement when -RemotePC used. Parameter used to specify which computer to get logs from
+  .INPUTS
+    N/A
+  .OUTPUTS
+    N/A
+  .NOTES
+    Version:        1.1
+    Author:         Bryan Bultitude
+    Creation Date:  21/09/2021
+    Purpose/Change: 21/09/2021 - Bryan Bultitude - Initial script development
+                    09/12/2021 - Bryan Bultitude - Moved Comment Based Help to top of function
+  .EXAMPLE
+    PS> Get-MEMRemoteLogs -ConfigMGR
+  .EXAMPLE
+    PS> Get-MEMRemoteLogs -RemotePC -ComputerName
+  #>
   Param(
     [Parameter(Mandatory = $true, ParameterSetName = 'ConfigMGR')][Switch]$ConfigMGR = $false,
     [Parameter(Mandatory = $true, ParameterSetName = 'RemotePC')][Switch]$RemotePC = $false,
     [Parameter(Mandatory = $true, ParameterSetName = 'RemotePC')]$ComputerName
   )
   if ($ConfigMGR -eq $true) {
-    New-PSDrive -Name ConfigMGRRemoteLogs -PSProvider FileSystem -Root "\\bnesccm01\d$\Program Files\Microsoft Configuration Manager\Logs"
+    New-PSDrive -Name ConfigMGRRemoteLogs -PSProvider FileSystem -Root "\\SERVERNAME\d$\Program Files\Microsoft Configuration Manager\Logs"
   }
   elseif ($RemotePC -eq $true) {
     New-PSDrive -Name ConfigMGRRemoteLogs -PSProvider FileSystem -Root "\\$ComputerName\C$\Windows\CCM\Logs"
@@ -64,29 +90,4 @@ Function Get-MEMRemoteLogs {
     Set-Location $CURRENTDIR
     Remove-PSDrive ConfigMGRRemoteLogs -ErrorAction SilentlyContinue
   }
-  <#
-.SYNOPSIS
- Get remote logs for Configuration Manager.
-.DESCRIPTION
- Get remote logs of Configruation Manager Primary Server or of remote systems' Configuration Manager Agent.
-.PARAMETER ConfigMGR
- Switches to get logs for Configuration Manager Primary Server. Not to be used with any other Parameters.
-.PARAMETER RemotePC
- Switches to get logs for Configuration Manager Agent for remote systems. Not to be used with -ConfigMGR
-.PARAMETER ComputerName
- Mandatory requirement when -RemotePC used. Parameter used to specify which computer to get logs from
-.INPUTS
- N/A
-.OUTPUTS
- N/A
-.NOTES
- Version:        1.0
- Author:         Bryan Bultitude
- Creation Date:  21/09/2021
- Purpose/Change: Initial script development
-.EXAMPLE
- PS> Get-MEMRemoteLogs -ConfigMGR
-.EXAMPLE
- PS> Get-MEMRemoteLogs -RemotePC -ComputerName
-#>
 }

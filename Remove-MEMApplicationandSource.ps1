@@ -1,24 +1,26 @@
-<#
-.SYNOPSIS
-    Cleans up Applications
-.DESCRIPTION
-    Remove-CMApplicationandSource removes all specified Application and the source directory from Configuration Manager
-.PARAMETER ApplicationName
-    Specifies the Application Name to be run against
-.INPUTS
-    None
-.OUTPUTS
-    None
-.NOTES
-    Version:        1.0
-    Author:         Bryan Bultitude
-    Creation Date:  31/08/2021
-    Purpose/Change: Initial script development
-.EXAMPLE
-    PS> Remove-CMApplicationandSource -ApplicationName "XXXXXXXX XXX"
-#>
-function Remove-CMApplicationandSource ($ApplicationName) {
-    Import-CMModule A00
+function Remove-MEMApplicationandSource ($ApplicationName) {
+    <#
+    .SYNOPSIS
+        Cleans up Applications
+    .DESCRIPTION
+        Remove-MEMApplicationandSource removes all specified Application and the source directory from Configuration Manager
+    .PARAMETER ApplicationName
+        Specifies the Application Name to be run against
+    .INPUTS
+        None
+    .OUTPUTS
+        None
+    .NOTES
+        Version:        1.2
+        Author:         Bryan Bultitude
+        Creation Date:  31/08/2021
+        Purpose/Change: 31/08/2021 - Bryan Bultitude - Initial script development
+                        21/09/2021 - Bryan Bultitude - Updated Function name to be different from Configuration Module Functions
+                        09/12/2021 - Bryan Bultitude - Moved Comment Based Help to top of function
+    .EXAMPLE
+        PS> Remove-MEMApplicationandSource -ApplicationName "XXXXXXXX XXX"
+    #>
+    Import-MEMModule A00
     $Application = Get-CMApplication -Name $ApplicationName
     $PKGID = $Application.PackageID
     $Replaced = $Application.IsSuperseded
@@ -93,4 +95,5 @@ Superseding $Replacing
 Deployed $Deployed times
 Used in $TaskSequence Task Sequences"
     }
+    Set-Location $env:HOMEDRIVE
 }

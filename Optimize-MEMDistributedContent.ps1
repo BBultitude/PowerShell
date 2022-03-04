@@ -1,4 +1,22 @@
 function Optimize-MEMDistributedContent {
+    <#
+    .SYNOPSIS
+       Cleans invalid packages
+    .DESCRIPTION
+       Cleans invalid packages from Distribution Points WMI
+    .INPUTS
+       N/A
+    .OUTPUTS
+       N/A
+    .NOTES
+       Version:        1.1
+       Author:         Bryan Bultitude
+       Creation Date:  24/09/2021
+       Purpose/Change: 24/09/2021 - Bryan Bultitude - Initial script development
+                       09/12/2021 - Bryan Bultitude - Added Commments Based Help
+    .EXAMPLE
+       PS> Optimize-MEMDistributedContent
+    #>
     [string]$SiteServer = "SERVER"
     [string]$SiteCode = "SITECODE"
     $Namespace = "root\SMS\Site_" + $SiteCode

@@ -1,4 +1,22 @@
 function Reset-MEMFailedContentDistribution {
+    <#
+    .SYNOPSIS
+       Redistributed Content
+    .DESCRIPTION
+       Redistributed Content that has failed to distributed to any DP
+    .INPUTS
+       N/A
+    .OUTPUTS
+       N/A
+    .NOTES
+       Version:        1.1
+       Author:         Bryan Bultitude
+       Creation Date:  24/09/2021
+       Purpose/Change: 24/09/2021 - Bryan Bultitude - Initial script development
+                       09/12/2021 - Bryan Bultitude - Added Commments Based Help
+    .EXAMPLE
+       PS> Reset-MEMFailedContentDistribution
+    #>
     $Server = "SERVER"
     $Namespace = "root\sms\site_A00"
     $strQuery = "Select Name,PackageID from SMS_DistributionDPStatus where MessageState > 2"
