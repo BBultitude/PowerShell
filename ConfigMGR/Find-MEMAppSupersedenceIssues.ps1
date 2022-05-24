@@ -9,7 +9,7 @@ Function Find-MEMAppSupersedenceIssues {
     .OUTPUTS
        N/A
     .NOTES
-       Version:        1.0
+       Version:        1.1
        Author:         Bryan Bultitude
        Creation Date:  15/03/2022
        Purpose/Change: 15/03/2022 - Bryan Bultitude - Initial script development
