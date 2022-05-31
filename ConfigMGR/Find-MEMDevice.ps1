@@ -31,6 +31,7 @@ function Find-MEMDevice {
        Creation Date:  27/04/2022
        Purpose/Change: 27/04/2022 - Bryan Bultitude - Initial script development
                        11/05/2022 - Bryan Bultitude - Simplified MAC address conversion, removed Dynamic Parameters, added ability to get Users Name, Title and convert OS version to friendly name
+                       31/05/2022 - Bryan Bultitude - Converted parameters to use ParameterSetName to limit options once something is already selected
     .EXAMPLE
        PS> Find-MEMDevice -Computer BBWIN10-01
     .EXAMPLE
@@ -41,13 +42,13 @@ function Find-MEMDevice {
        PS> Find-MEMDevice -CountOSVersion 'Win10 - 1507'
     #>
     param (
-        [Parameter(Mandatory = $false)]
+        [Parameter(Mandatory = $True, ParameterSetName = 'Computer')]
         $Computer = "",
-        [Parameter(Mandatory = $false)]
+        [Parameter(Mandatory = $True, ParameterSetName = 'User')]
         $User = "",
-        [Parameter(Mandatory = $false)]
+        [Parameter(Mandatory = $True, ParameterSetName = 'MAC')]
         $MAC = "",
-        [Parameter(Mandatory = $false)]
+        [Parameter(Mandatory = $True, ParameterSetName = 'OS')]
         [ValidateSet("Win10 - 1507", "Win10 - 1511", "Win10 - 1607", "Win10 - 1703", "Win10 - 1709", "Win10 - 1803", "Win10 - 1809", "Win10 - 1903", "Win10 - 1909", "Win10 - 20H1", "Win10 - 20H2", "Win10 - 21H1", "Win10 - 21H2", "Win11 - 21H2")]
         $CountOSVersion = ""
     )
