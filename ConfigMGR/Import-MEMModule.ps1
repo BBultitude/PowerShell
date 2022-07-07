@@ -18,6 +18,7 @@ Function Import-MEMModule {
                       21/09/2021 - Bryan Bultitude - Updated Function name to be different from Configuration Module Functions
                       09/12/2021 - Bryan Bultitude - Moved Comment Based Help to top of function
                       04/07/2022 - Bryan Bultitude - Added output to display module version
+                      07/07/2022 - Bryan Bultitude - Changed from exit 1 to use Break so error is still visible
    .EXAMPLE
       Import-MEMModule A00
    .EXAMPLE
@@ -39,6 +40,6 @@ Function Import-MEMModule {
    }
    if (-not (Get-PSDrive -Name $SiteCode)) {
       Write-Error "There was a problem loading the Configuration Manager powershell module and accessing the site's PSDrive."
-      exit 1
+      Break
    }
 }
